@@ -53,7 +53,7 @@ export default class ReactAce extends Component {
     }
     this.editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3]);
     this.editor.getSession().setMode(`ace/mode/${mode}`);
-    this.editor.setTheme(`ace/theme/${theme}`);
+    //this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(fontSize);
     this.editor.getSession().setValue(!defaultValue ? value : defaultValue, cursorStart);
     this.editor.navigateFileEnd();
@@ -158,9 +158,9 @@ export default class ReactAce extends Component {
     if (nextProps.mode !== oldProps.mode) {
       this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
     }
-    if (nextProps.theme !== oldProps.theme) {
-      this.editor.setTheme('ace/theme/' + nextProps.theme);
-    }
+    //if (nextProps.theme !== oldProps.theme) {
+      //this.editor.setTheme('ace/theme/' + nextProps.theme);
+    //}
     if (nextProps.keyboardHandler !== oldProps.keyboardHandler) {
       if (nextProps.keyboardHandler) {
         this.editor.setKeyboardHandler('ace/keyboard/' + nextProps.keyboardHandler);
@@ -227,7 +227,7 @@ export default class ReactAce extends Component {
   }
   onCursorChange(event) {
     if (this.props.onCursorChange) {
-      const value = this.editor.getSelection();
+      const value = this.editor.getValue();
       this.props.onCursorChange(value, event);
     }
   }
@@ -378,5 +378,5 @@ ReactAce.defaultProps = {
   setOptions: {},
   wrapEnabled: false,
   enableBasicAutocompletion: false,
-  enableLiveAutocompletion: false,
+  enableLiveAutocompletion: true,
 };
